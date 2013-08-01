@@ -4,6 +4,7 @@ module ActiveModel
       def to_json(*args)
         if caching_enabled?
           key = expand_cache_key([self.class.to_s.underscore, cache_key, 'to-json'])
+          puts key.inspect
           cache.fetch key do
             super
           end
@@ -15,6 +16,7 @@ module ActiveModel
       def serialize(*args)
         if caching_enabled?
           key = expand_cache_key([self.class.to_s.underscore, cache_key, 'serialize'])
+          puts key.inspect
           cache.fetch key do
             serialize_object
           end
